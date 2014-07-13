@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="App">
+  <head>
+    <meta charset="utf-8">
+    <title>Clinical Trial Chart</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <!-- dependencies -->
+    <script src="libs/jquery.js"></script>
+    <script src="libs/angular.js"></script>
+    <script src="libs/angular-route.js"></script>
+    <script src="libs/angular-xml.min.js"></script>
+    <script src="libs/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/icon">
+    <link rel="icon" href="/favicon.ico" type="image/icon">
+
+    <!-- Bootstrap -->
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
+    rel="stylesheet">
+
+
+    <!-- scripts -->
+    <script src='javascripts/angapp.js'></script>
+    <script src='javascripts/AppController.js'></script>
+    <script src='javascripts/physData.js'></script>
+    <script src='javascripts/xml2json.js'></script>
+    <script src='javascripts/barChart1.directive.js'></script>
+
+
+  <body ng-controller="homeCTRL">
+    <H1>Clinical Trial Chart</H1> 
+    <div class="form-group">
+        <form ng-submit="submitSearch(selected)">
+          <span><input type="text" ng-model="selected" placeholder="Search for..." class="form-control"><button ng-click="submitSearch(selected)" type = "button" class="btn-large btn btn-success searchButton">SEARCH</button><span>
+        </form>
+      </div>
+    </div>
+    <div>hi {{dataResults}}</div> 
+    <div class="barChart1" data="dataResults"></div>
+    <div class="d3chart" label="d3Buses" data="d3Data" id="Buses">
+      <d3-Routes label="d3RouteLabel" data="d3RouteData" id="Routes" on-click="d3RoutesOnClick(item)">
+      <d3-Buses label="d3Label" data="d3Data" id="Buses" on-click="d3BusesOnClick(item)"></d3-Buses> 
+      </d3-Buses>
+    </div>
+
+  </body>
+</html>
