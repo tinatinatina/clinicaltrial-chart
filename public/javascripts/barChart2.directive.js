@@ -1,5 +1,5 @@
-angular.module('BarChart1.directive', ['AppController'])
-  .directive('barChart1', ['$window', '$q', function($window, $q) {
+angular.module('BarChart2.directive', [])
+  .directive('barChart2', ['$window', '$q', function($window, $q) {
 
   return {
     restrict: 'EAC',
@@ -9,15 +9,9 @@ angular.module('BarChart1.directive', ['AppController'])
           onClick: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      console.log(2);
-      // $scope.textVariable = 'variable1'
-      // $scope.changeTextVariable = function(value){
-      //   console.log('please werk', value);
-      //   $scope.textVariable = value;
-      // };
-
+      console.log(3);
     },
-    template: '<div id="container" style="margin: 0 auto">not working</div>',
+    template: '<div id="container2" style="margin: 0 auto">not working</div>',
     link: function(scope, element, attrs) {
 
       window.onresize = function(){
@@ -30,18 +24,19 @@ angular.module('BarChart1.directive', ['AppController'])
         scope.render(scope.data);
       });
       scope.$watch('data', function(newVals, oldVals) {
+        console.log('data change chart2');
         return scope.render(newVals);
         }, true);
 
 
       scope.render = function(data) {
-        console.log(data);
         var search = (Object.keys(data)[0]);
+        console.log("search", search);
 
         var chart = new Highcharts.Chart({
           chart: {
             type: 'column',
-            renderTo: 'container'
+            renderTo: 'container2'
           },
           title: {
               text: 'Status Chart: '+ search
@@ -72,11 +67,7 @@ angular.module('BarChart1.directive', ['AppController'])
                   point: {
                       events: {
                         click: function() {
-                            // var res = this.category;
-                            // scope.changeTextVariable(res);
                             scope.onClick({item : this.category});
-
-                            // alert ('Category: '+ this.category +', value: '+ this.y);
                         }
                       }
                   }

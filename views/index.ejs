@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/icon">
     <link rel="icon" href="/favicon.ico" type="image/icon">
 
+
     <!-- Bootstrap -->
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
     rel="stylesheet">
@@ -27,6 +28,7 @@
     <script src='javascripts/physData.js'></script>
     <script src='javascripts/xml2json.js'></script>
     <script src='javascripts/barChart1.directive.js'></script>
+    <script src='javascripts/barChart2.directive.js'></script>
 
 
   <body ng-controller="homeCTRL">
@@ -37,13 +39,46 @@
         </form>
       </div>
     </div>
-    <div>hi {{dataResults}}</div> 
-    <div class="barChart1" data="dataResults"></div>
-    <div class="d3chart" label="d3Buses" data="d3Data" id="Buses">
-      <d3-Routes label="d3RouteLabel" data="d3RouteData" id="Routes" on-click="d3RoutesOnClick(item)">
-      <d3-Buses label="d3Label" data="d3Data" id="Buses" on-click="d3BusesOnClick(item)"></d3-Buses> 
-      </d3-Buses>
-    </div>
+    <div class="barChart1" data="dataResults" on-click="chart1OnClick(item)" ></div>
 
+    <div class="barChart2" data="chart2Data" ng-show="showClickData === true" on-click="chart2OnClick(item)"></div>
+
+    <div class="titleRow" ng-show= "showGrid === true">Studies for {{currCondition}} with status of:  {{currStatus}} </div>
+    <table class="table" ng-show= "showGrid === true">
+      <thead> 
+        <tr>
+
+          <th href = "" ng-click="predicate='title'; reverse=!reverse">Title<span class="glyphicon glyphicon-sort"></span></th>
+          <th>URL</th>
+          <th>Conditions</th>
+          <th>Status</th>
+          <th href = "" ng-click="predicate='score'; reverse=!reverse">Score<span class="glyphicon glyphicon-sort"></span></a></th>
+          <th href = "" ng-click="predicate='last_changed'; reverse=!reverse">Last Changed<span class="glyphicon glyphicon-sort"></span></a></th>
+        </tr>
+      </thead>
+      <tbody >
+
+        <tr class="articleEntry" ng-repeat='article in gridData | filter:q:strict | orderBy:predicate:reverse' >
+          <td class="articleInfo">
+            <p class="title">{{article.title}}</p>
+          </td>
+          <td class="articleInfo">
+            <a ng-href= "{{article.url}}"<p class="title">{{article.url}}</p>
+          </td>
+          <td class="articleInfo">
+            <p class="title">{{article.condition_summary}}</p>
+          </td>
+          <td class="articleInfo">
+            <p class="title">{{article.status.__text}}</p>
+          </td>
+          <td class="articleInfo">
+            <p class="title">{{article.score}}</p>
+          </td>
+          <td class="articleInfo">
+            <p class="title">{{article.last_changed}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>

@@ -2,6 +2,7 @@ var App = angular.module('App', [
   'AppController',
   'PhysData',
   'BarChart1.directive',
+  'BarChart2.directive',
   'ngRoute',
   'xml',
   'ui.bootstrap'

@@ -13,21 +13,21 @@ angular.module('PhysData', [])
         url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[0],
         responseType: 'application/xml'
         }),
-        // $http({
-        // method: 'GET',
-        // url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[1],
-        // responseType: 'application/xml'
-        // }),
-        // $http({
-        // method: 'GET',
-        // url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[2],
-        // responseType: 'application/xml'
-        // }),
-        // $http({
-        // method: 'GET',
-        // url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[3],
-        // responseType: 'application/xml'
-        // }),
+        $http({
+        method: 'GET',
+        url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[1],
+        responseType: 'application/xml'
+        }),
+        $http({
+        method: 'GET',
+        url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[2],
+        responseType: 'application/xml'
+        }),
+        $http({
+        method: 'GET',
+        url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[3],
+        responseType: 'application/xml'
+        }),
         $http({
         method: 'GET',
         url:"http://www.corsproxy.com/clinicaltrial.gov/ct2/results?term="+tag+"&Search=Searc&displayxml=true&pg="+range[4],
