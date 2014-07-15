@@ -40,9 +40,11 @@
       </div>
     </div>
     <div class="barChart1" data="dataResults" on-click="chart1OnClick(item)" ></div>
+    <button ng-click="prevPage()" type = "button" class="btn-small btn btn-success arrowButton" ><</button>results {{range[0]}} - {{range[4] * 20}} of {{searchTotal}} <button ng-click="nextPage()" type = "button" class="btn-small btn btn-success arrowButton">></button>
 
+    <button ng-click="hideChart()" type = "button" class="btn-small btn btn-success closeButton" ng-show="showClickData === true">X</button>
     <div class="barChart2" data="chart2Data" ng-show="showClickData === true" on-click="chart2OnClick(item)"></div>
-
+    <button ng-click="hideGrid()" type = "button" class="btn-small btn btn-success closeButton" ng-show= "showGrid === true">X</button>
     <div class="titleRow" ng-show= "showGrid === true">Studies for {{currCondition}} with status of:  {{currStatus}} </div>
     <table class="table" ng-show= "showGrid === true">
       <thead> 
@@ -60,7 +62,7 @@
 
         <tr class="articleEntry" ng-repeat='article in gridData | filter:q:strict | orderBy:predicate:reverse' >
           <td class="articleInfo">
-            <p class="title">{{article.title}}</p>
+            <p class="title">{{ article.title | limitTo: 100}}</p>
           </td>
           <td class="articleInfo">
             <a ng-href= "{{article.url}}"<p class="title">{{article.url}}</p>

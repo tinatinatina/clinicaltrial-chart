@@ -14,15 +14,15 @@ angular.module('BarChart2.directive', [])
     template: '<div id="container2" style="margin: 0 auto">not working</div>',
     link: function(scope, element, attrs) {
 
-      window.onresize = function(){
-        scope.$apply();
-      };
+      // window.onresize = function(){
+      //   scope.$apply();
+      // };
 
-      scope.$watch(function() {
-        return angular.element($window)[0].innerWidth;
-      }, function() {
-        scope.render(scope.data);
-      });
+      // scope.$watch(function() {
+      //   return angular.element($window)[0].innerWidth;
+      // }, function() {
+      //   scope.render(scope.data);
+      // });
       scope.$watch('data', function(newVals, oldVals) {
         console.log('data change chart2');
         return scope.render(newVals);
@@ -45,12 +45,16 @@ angular.module('BarChart2.directive', [])
               text: 'Source: clinicaltrial.gov'
           },
           xAxis: {
-            categories: data[search].name 
+            categories: data[search].name ,
+            labels: {
+                    rotation: -45
+                  }
           },
           yAxis: {
               min: 0,
               title: {
-                  text: '# of Studies'
+                  text: '# of Studies',
+              
               }
           },
           series: [{
@@ -59,7 +63,6 @@ angular.module('BarChart2.directive', [])
             }],
           plotOptions: {
               series: {
-                  borderWidth: 0,
                   dataLabels: {
                       enabled: true,
                       format: '{point.y}'
@@ -69,12 +72,14 @@ angular.module('BarChart2.directive', [])
                         click: function() {
                             scope.onClick({item : this.category});
                         }
-                      }
+                      },
                   }
                 },
               column: {
+                  shadow: false,
                   pointPadding: 0.2,
-                  borderWidth: 0
+                  borderWidth: 0,
+                  groupPadding: 0
 
               }
           }

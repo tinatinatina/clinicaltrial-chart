@@ -9,8 +9,8 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     $scope.currStatus = null;
     $scope.currCondition = null;
     $scope.chart2Data[$scope.currStatus] = {'name':[], 'data':[]};
-    var searchTotal = 0;
-    var range = [1, 2, 3, 4, 5];
+    $scope.searchTotal = 0;
+    $scope.range = [1, 2, 3, 4, 5];
     $scope.gridData = [];
 
     $scope.showClickData = false;
@@ -27,7 +27,7 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       physData.getData(searchParam, range).then(function(results){
         data[searchParam.toUpperCase()] = {'name':[], 'data':[]};
         console.log(results);
-        searchTotal = results[1];
+        $scope.searchTotal = results[1];
         $scope.results = results[0];
         for (var key in results[0]){
           data[searchParam.toUpperCase()].name.push(key);
@@ -35,23 +35,23 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
         }
         $scope.dataResults = data;
       });
+      $scope.$apply();
     }
     $scope.submitSearch = function(selected){
-      range = [1, 2, 3, 4, 5];
       $scope.search = selected;
-      makeDataRequest(selected, range);
+      makeDataRequest(selected, $scope.range);
     };
     $scope.nextPage = function(){
-      for (var i = 0; i < range.length; i++) {
-        range[i] += 5;
+      for (var i = 0; i < $scope.range.length; i++) {
+        $scope.range[i] += 5;
       }
-      makeDataRequest($scope.search, range);
+      makeDataRequest($scope.search, $scope.range);
     };
     $scope.prevPage = function(){
-      for (var i = 0; i < range.length; i++) {
-        range[i] -= 5;
+      for (var i = 0; i < $scope.range.length; i++) {
+        $scope.range[i] -= 5;
       }
-      makeDataRequest($scope.search, range);
+      makeDataRequest($scope.search, $scope.range);
     };
 
     $scope.chart1OnClick = function(item){
@@ -82,11 +82,13 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
         data[item].data.push(chart2[key]);
       }
       console.log($scope.chart2Data);
+      $scope.showClickData = true;
       $scope.chart2Data = data;
       // $scope.chart2Loading = false;
-      $scope.showClickData = true;
+      $scope.$apply();
     };
     $scope.chart2OnClick = function(item){
+      $scope.showGrid = true;
       var grid = [];
       $scope.currCondition = item;
       var group = $scope.results[$scope.currStatus];
@@ -97,12 +99,19 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
         }
       }
       $scope.gridData = grid;
-      $scope.showGrid = true;
+      $scope.$apply();
+
     };
+    $scope.hideGrid = function(){
+      $scope.showGrid = false;
+      $scope.$apply();
+    };
+    $scope.hideChart = function(){
+      $scope.showClickData = false;
+      $scope.$apply();
+    }
 
-
-
-    makeDataRequest($scope.search, range);
+    makeDataRequest($scope.search, $scope.range);
 
     
 }]);

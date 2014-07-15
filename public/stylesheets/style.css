@@ -1,6 +1,11 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('https://www.jpmorgan.com/treasury/demo/hsa/chasefaqmobile/images/Sliced_Images/Background.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 a {
@@ -35,8 +40,19 @@ th:hover{
   text-decoration: underline;
   cursor: pointer;
 }
+td{
+  background-color: white;
+  opacity: 50%;
+  color: black;
+}
 .title{
   text-align: left !important;
   font-size: 1em;
+}
+.arrowButton{
+  float: left;
+}
+.closeButton{
+  float: right;
 }
 
