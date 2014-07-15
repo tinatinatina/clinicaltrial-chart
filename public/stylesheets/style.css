@@ -14,8 +14,23 @@ a {
 h1{
   color: #F7FAFF !important;
 }
-.form-control {
-  width: 30% !important;
+.header{
+  color: #F7FAFF;
+  display: inline;
+  font-size: 3em;
+}
+.form-group{
+  /*width: 30% !important;*/
+  display: inline !important;
+  float: right;
+}
+input{
+  width: 100% !important;
+  display: inline !important;
+}
+.searchButton{
+  float: left;
+  display: inline !important;
 }
 .btn{
   color:white !important;
