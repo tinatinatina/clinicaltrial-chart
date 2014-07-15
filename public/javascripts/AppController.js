@@ -28,7 +28,6 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
         data[searchParam.toUpperCase()] = {'name':[], 'data':[]};
         if(results === 'ERROR'){
           $scope.error = true;
-
         }
         $scope.searchTotal = results[1];
         $scope.results = results[0];

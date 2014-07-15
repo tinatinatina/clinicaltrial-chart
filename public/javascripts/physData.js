@@ -39,7 +39,7 @@ angular.module('PhysData', [])
         var x2js = new X2JS();
         var searchCountJSON = x2js.xml_str2json(responses[0].data);
         var searchCount = searchCountJSON.search_results._count;
-        console.log(searchCount);
+
         if(searchCount==='0'){
           deferred.resolve('ERROR');
         }else{
