@@ -28,7 +28,6 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     /////Makes API call and modifies results for first chart data/////////
       physData.getData(searchParam, range).then(function(results){
         data[searchParam.toUpperCase()] = {'name':[], 'data':[]};
-        console.log(results);
         $scope.searchTotal = results[1];
         $scope.results = results[0];
         for (var key in results[0]){
@@ -62,9 +61,8 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     /////////Modifies data for chart 2 //////////
 
     $scope.chart1OnClick = function(item){
-      console.log('chart1click');
       $scope.currStatus = item;
-      var data = {}
+      var data = {};
       data[item] = {'name':[], 'data':[]};
       var chart2 = {};
       for (var i = 0; i < $scope.results[item].length; i++) {
@@ -84,10 +82,8 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
         data[item].name.push(key);
         data[item].data.push(chart2[key]);
       }
-      console.log($scope.chart2Data);
       $scope.showClickData = true;
       $scope.chart2Data = data;
-      // $scope.chart2Loading = false;
       $scope.$apply();
     };
 
@@ -98,7 +94,6 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       var grid = [];
       $scope.currCondition = item;
       var group = $scope.results[$scope.currStatus];
-      console.log(group);
       for (var i = 0; i < group.length; i++) {
         if(group[i].condList[item]){
           grid.push(group[i]);

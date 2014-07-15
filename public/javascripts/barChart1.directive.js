@@ -9,13 +9,6 @@ angular.module('BarChart1.directive', ['AppController'])
           onClick: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      console.log(2);
-      // $scope.textVariable = 'variable1'
-      // $scope.changeTextVariable = function(value){
-      //   console.log('please werk', value);
-      //   $scope.textVariable = value;
-      // };
-
     },
     template: '<div id="container" style="margin: 0 auto">not working</div>',
     link: function(scope, element, attrs) {
@@ -35,7 +28,7 @@ angular.module('BarChart1.directive', ['AppController'])
 
 
       scope.render = function(data) {
-        console.log(data);
+
         var search = (Object.keys(data)[0]);
 
         var chart = new Highcharts.Chart({
@@ -72,11 +65,7 @@ angular.module('BarChart1.directive', ['AppController'])
                   point: {
                       events: {
                         click: function() {
-                            // var res = this.category;
-                            // scope.changeTextVariable(res);
                             scope.onClick({item : this.category});
-
-                            // alert ('Category: '+ this.category +', value: '+ this.y);
                         }
                       }
                   }

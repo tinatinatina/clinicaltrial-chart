@@ -54,7 +54,6 @@ angular.module('PhysData', [])
             }
           }
         }
-          console.log('request complete');
             deferred.resolve([combined, searchCount]);
       });
       return deferred.promise;
