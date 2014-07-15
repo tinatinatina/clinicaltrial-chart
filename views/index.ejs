@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
- 
+    <div class="alert alert-danger" role="alert" ng-show="error===true">ERROR: Search did not return results.</div>
     <div class="barChart1" data="dataResults" on-click="chart1OnClick(item)" ></div>
     <button ng-click="prevPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[0] !== 1"><</button>results {{range[0] * 20 - 19}} - {{range[4] * 20}} of {{searchTotal}} <button ng-click="nextPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[4] < searchTotal">></button>
 

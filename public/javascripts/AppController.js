@@ -15,12 +15,10 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
 
     $scope.showClickData = false;
     $scope.showGrid = false;
-    $scope.chart1Loading = false;
-    $scope.chart2Loading = false;
-    $scope.chart3Loading = false;
+    $scope.error = false;
 
     function makeDataRequest(searchParam, range){
-
+      $scope.error = false;
       $scope.showClickData = false;
       $scope.showGrid = false;
       var data = {};
@@ -28,6 +26,10 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     /////Makes API call and modifies results for first chart data/////////
       physData.getData(searchParam, range).then(function(results){
         data[searchParam.toUpperCase()] = {'name':[], 'data':[]};
+        if(results === 'ERROR'){
+          $scope.error = true;
+
+        }
         $scope.searchTotal = results[1];
         $scope.results = results[0];
         for (var key in results[0]){

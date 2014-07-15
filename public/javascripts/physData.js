@@ -39,22 +39,26 @@ angular.module('PhysData', [])
         var x2js = new X2JS();
         var searchCountJSON = x2js.xml_str2json(responses[0].data);
         var searchCount = searchCountJSON.search_results._count;
-        for (var i = 0; i < responses.length; i++) {
-          var json = x2js.xml_str2json(responses[i].data);
-          var studies = json.search_results.clinical_study;
-          for (var j = 0; j < studies.length; j++) {
-            var study = studies[j];
-            var studyText = study.status.__text;
-            if(combined[studyText]){
-              combined[studyText].push(study);
-              combined[studyText].count++;
-            }else{
-              combined[studyText] = [study];
-              combined[studyText].count = 1;
+        console.log(searchCount);
+        if(searchCount==='0'){
+          deferred.resolve('ERROR');
+        }else{
+          for (var i = 0; i < responses.length; i++) {
+            var json = x2js.xml_str2json(responses[i].data);
+            var studies = json.search_results.clinical_study;
+            for (var j = 0; j < studies.length; j++) {
+              var study = studies[j];
+              var studyText = study.status.__text;
+              if(combined[studyText]){
+                combined[studyText].push(study);
+                combined[studyText].count++;
+              }else{
+                combined[studyText] = [study];
+                combined[studyText].count = 1;
+              }
             }
-          }
+          } deferred.resolve([combined, searchCount]);
         }
-            deferred.resolve([combined, searchCount]);
       });
       return deferred.promise;
     };
