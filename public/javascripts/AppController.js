@@ -20,10 +20,12 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     $scope.chart3Loading = false;
 
     function makeDataRequest(searchParam, range){
+
       $scope.showClickData = false;
       $scope.showGrid = false;
       var data = {};
 
+    /////Makes API call and modifies results for first chart data/////////
       physData.getData(searchParam, range).then(function(results){
         data[searchParam.toUpperCase()] = {'name':[], 'data':[]};
         console.log(results);
@@ -37,10 +39,13 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       });
       $scope.$apply();
     }
+
     $scope.submitSearch = function(selected){
       $scope.search = selected;
       makeDataRequest(selected, $scope.range);
     };
+
+    ////////Pagination functions///////////////////
     $scope.nextPage = function(){
       for (var i = 0; i < $scope.range.length; i++) {
         $scope.range[i] += 5;
@@ -53,6 +58,8 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       }
       makeDataRequest($scope.search, $scope.range);
     };
+
+    /////////Modifies data for chart 2 //////////
 
     $scope.chart1OnClick = function(item){
       console.log('chart1click');
@@ -72,10 +79,6 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
             chart2[cond[j]] = 1;
           }
         }
-        /* make object with conditions and count 
-        simultaneously change condition summary to object lookup
-        so when clicked, quick loop to see if article.condition.lookupcond = true. */
-
       }
       for (var key in chart2){
         data[item].name.push(key);
@@ -87,6 +90,9 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       // $scope.chart2Loading = false;
       $scope.$apply();
     };
+
+    //////modifies data for grid///////////
+
     $scope.chart2OnClick = function(item){
       $scope.showGrid = true;
       var grid = [];
@@ -102,6 +108,8 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
       $scope.$apply();
 
     };
+
+    ////////functions for close buttons///////
     $scope.hideGrid = function(){
       $scope.showGrid = false;
       $scope.$apply();
@@ -109,7 +117,7 @@ AppController.controller('homeCTRL', ['$scope', '$http', 'xmlParser', 'physData'
     $scope.hideChart = function(){
       $scope.showClickData = false;
       $scope.$apply();
-    }
+    };
 
     makeDataRequest($scope.search, $scope.range);
 

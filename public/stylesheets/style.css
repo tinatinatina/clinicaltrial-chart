@@ -11,24 +11,26 @@ body {
 a {
   color: #00B7FF;
 }
-
+h1{
+  color: #F7FAFF !important;
+}
 .form-control {
   width: 30% !important;
 }
-.btn-success {
-  background-color: gray !important;
-  border-color: #E6E6E6 !important;
-
+.btn{
+  color:white !important;
+  background-color: rgba(0,0,0,0.1) !important;
 }
 thead{
-    background-color: #E6E6E6 !important;
-      font-size: 1em;
+  background-color: #E6E6E6 !important;
+  font-size: 1em;
   font-weight: bold;
   color: #000;
 }
 .titleRow{
   font-size: 1.5em;
   color: #000;
+  background-color: rgba(0,0,0,0.1) !important;
 }
 th{
   font-size: 1.2em;
@@ -55,4 +57,17 @@ td{
 .closeButton{
   float: right;
 }
+.tooltip.bottom .tooltip-arrow{
+    top:0;
+    left:50%;
+    margin-left:-5px;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:5px solid red !important;
+    color: yellow !important;
+}
+.tooltip-inner{
+    color:green !important;
+    background-color: yellow !important;
 
+}
