@@ -9,7 +9,7 @@
     <script src="libs/angular.js"></script>
     <script src="libs/angular-route.js"></script>
     <script src="libs/angular-xml.min.js"></script>
-    <script src="libs/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script src="libs/spin.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <link rel="shortcut icon" href="/favicon.ico" type="image/icon">
     <link rel="icon" href="/favicon.ico" type="image/icon">
@@ -35,12 +35,12 @@
     <H1>Clinical Trial Chart</H1> 
     <div class="form-group">
         <form ng-submit="submitSearch(selected)">
-          <span><input type="text" ng-model="selected" placeholder="Search for..." class="form-control"><button ng-click="submitSearch(selected)" type = "button" class="btn-large btn searchButton">SEARCH</button><span>
+          <span><input type="text" ng-model="selected" placeholder="Search for study..." class="form-control"><button ng-click="submitSearch(selected)" type = "button" class="btn-large btn searchButton">SEARCH</button><span>
         </form>
       </div>
     </div>
     <div class="barChart1" data="dataResults" on-click="chart1OnClick(item)" ></div>
-    <button ng-click="prevPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[0] !== 1"><</button>results {{range[0]}} - {{range[4] * 20}} of {{searchTotal}} <button ng-click="nextPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[4] < searchTotal">></button>
+    <button ng-click="prevPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[0] !== 1"><</button>results {{range[0] * 20 - 19}} - {{range[4] * 20}} of {{searchTotal}} <button ng-click="nextPage()" type = "button" class="btn-small btn arrowButton" ng-show="range[4] < searchTotal">></button>
 
     <button ng-click="hideChart()" type = "button" class="btn-small btn closeButton" ng-show="showClickData === true">X</button>
     <div class="barChart2" data="chart2Data" ng-show="showClickData === true" on-click="chart2OnClick(item)"></div>

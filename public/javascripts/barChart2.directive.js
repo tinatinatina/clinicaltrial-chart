@@ -9,29 +9,21 @@ angular.module('BarChart2.directive', [])
           onClick: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      console.log(3);
+
     },
     template: '<div id="container2" style="margin: 0 auto">not working</div>',
     link: function(scope, element, attrs) {
 
-      // window.onresize = function(){
-      //   scope.$apply();
-      // };
-
-      // scope.$watch(function() {
-      //   return angular.element($window)[0].innerWidth;
-      // }, function() {
-      //   scope.render(scope.data);
-      // });
       scope.$watch('data', function(newVals, oldVals) {
-        console.log('data change chart2');
+
         return scope.render(newVals);
         }, true);
 
 
       scope.render = function(data) {
+
         var search = (Object.keys(data)[0]);
-        console.log("search", search);
+
 
         var chart = new Highcharts.Chart({
           chart: {
